@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <title>Calculator Example</title>
+  </head>
+  <body>
+    <h1>calculator</h1>
+
+    <label>Select operator:</label>
+
+    <input id="number1" />
+    <select id="selector" name="">
+      <option value="add">+</option>
+      <option value="sustract">-</option>
+      <option value="multiply">*</option>
+      <option value="divide">/</option>
+    </select>
+    <input id="number2" />
+
+    <button><h2>🟰</h2></button>
+
+    <span id="result"></span>
+
+    <div><button id="resetval">🔄</button></div>
+
+    <script>
+      //I am creating variables
+      const number1Input = document.getElementById("number1");
+      const number2Input = document.getElementById("number2");
+      const selector = document.getElementById("selector");
+      const resultSpan = document.getElementById("result");
+      const calculateButton = document.querySelector("button");
+      const resetbutton = document.getElementById("resetval");
+
+      // event to selector button.
+
+      calculateButton.addEventListener("click", () => {
+        const num1 = parseFloat(number1Input.value);
+        const num2 = parseFloat(number2Input.value);
+        const operator = selector.value;
+
+        let result;
+        switch (operator) {
+          case "add":
+            result = num1 + num2;
+            break;
+          case "sustract":
+            result = num1 - num2;
+            break;
+          case "multiply":
+            result = num1 * num2;
+            break;
+          case "divide":
+            if (num2 !== 0) {
+              result = num1 / num2;
+            } else {
+              result = "Error: No se puede dividir por cero";
+            }
+            break;
+          default:
+            result = "invalid operator";
+        }
+        resultSpan.textContent = " " + result;
+      });
+
+      // event to reset button:
+      resetbutton.addEventListener("click", () => {
+        number1Input.value = "";
+        number2Input.value = "";
+        resultSpan.textContent = "";
+      });
+    </script>
+  </body>
+</html>

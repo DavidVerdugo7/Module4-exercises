@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #e3f2fd;
+      }
+      .card {
+        padding: 10px;
+      }
+      .card-title {
+        font-weight: 600;
+        font-size: 3em;
+        padding: 0 0 10px 0;
+      }
+      .card-description {
+        font-weight: 400;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="news-container" class="text-center mb-4">
+      <!-- News cards -->
+      <h1>News</h1>
+    </div>
+
+    //adding news exercise 5
+    <div class="row">
+      <div class="col-md-12 mt-4">
+        <h2>Add News</h2>
+        <input type="text" id="news-title" placeholder="Title" /> <br />
+        <textarea id="news-content" placeholder="Content"></textarea>
+        <button onclick="addNews(event)">Add News</button>
+      </div>
+    </div>
+
+    <template id="news-card-template">
+      <div class="custom-card card mb-3" style="max-width: 18rem">
+        <div class="custom-card-body card-body">
+          <h5 class="custom-card-title card-title"></h5>
+          <p class="custom-card-description card-text"></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- cards script -->
+    <script>
+      // Array with news
+      let news = [
+        {
+          id: 1,
+          title: "Election Results",
+          content: "Newly elected minister...",
+        },
+        {
+          id: 2,
+          title: "Sporting Success",
+          content: "World Cup winners...",
+        },
+        {
+          id: 3,
+          title: "Tornado Warning",
+          content: "Residents should prepare...",
+        },
+      ];
+
+      function addNews(event) {
+        event.preventDefault();
+
+        const titleInput = document.getElementById("news-title");
+        const contentInput = document.getElementById("news-content");
+
+        const title = titleInput.value;
+        const content = contentInput.value;
+
+        if (title && content) {
+          const newId = news.length + 1;
+
+          // array modification
+          news.push({ id: newId, title, content });
+
+          titleInput.value = "";
+          contentInput.value = "";
+
+          updateNews();
+        }
+      }
+
+      function updateNews() {
+        document.querySelector("#news-container").innerHTML = "";
+
+        // i am Adding the latest news
+        news.forEach((item) => {
+          addNewsCard(item.id, item.title, item.content);
+        });
+      }
+
+      function addNewsCard(id, title, content) {
+        const template = document
+          .getElementById("news-card-template")
+          .content.cloneNode(true);
+
+        template.querySelector(".custom-card-title").innerText = title;
+        template.querySelector(".custom-card-description").innerText = content;
+
+        document.querySelector("#news-container").appendChild(template);
+      }
+
+      //  carga las noticias
+      updateNews();
+
+      // aqui  Establece un intervalo para actualizar las noticias cada 5 segundos
+      setInterval(updateNews, 5000);
+    </script>
+
+    <script>
+      src =
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js";
+      integrity =
+        "sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL";
+      crossorigin = "anonymous";
+    </script>
+  </body>
+</html>

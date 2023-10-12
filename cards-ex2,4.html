@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #e3f2fd;
+      }
+      .card {
+        padding: 10px;
+      }
+      .card-title {
+        font-weight: 600;
+        font-size: 3em;
+        padding: 0 0 10px 0;
+      }
+      .card-description {
+        font-weight: 400;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="artist-profile" class="text-center mb-4">
+      <!-- profile artist -->
+      <h1>Profile</h1>
+      <h3 id="artist-name"></h3>
+    </div>
+
+    <div id="card-list" class="d-flex flex-wrap justify-content-center"></div>
+
+    <template id="portfolio-card-template">
+      <div class="custom-card card" style="width: 18rem">
+        <img
+          class="custom-card-image card-img-top"
+          src=""
+          alt="Imagen del portafolio"
+        />
+        <div class="custom-card-body card-body">
+          <h5 class="custom-card-title card-title">Artist</h5>
+        </div>
+      </div>
+    </template>
+
+    <!-- <button onclick="addCard()">add card</button> -->
+    // ==Exercise 2. #1==================================================
+    <!-- <script>
+      
+      const data = [
+        { name: "bob", age: 23 },
+        { name: "alice", age: 39 },
+      ];
+
+      function addCard(name, age) {
+        const template = document
+          .getElementById("card-template")
+          .content.cloneNode(true);
+
+        template.querySelector(
+          ".custom-card-title"
+        ).innerText = `name: ${name}`;
+        template.querySelector(
+          ".custom-card-description"
+        ).innerText = `age: ${age} years old`;
+
+        document.querySelector("#card-list").appendChild(template);
+      }
+
+      // //adding cards:
+      // addCard("Título 1", "Descripción 1");
+      // addCard("Título 2", "Descripción 2");
+      // addCard("Título 3", "Descripción 3");
+
+      // =====#2=====================================================
+      data.forEach((item) => {
+        addCard(item.name, item.age);
+      });
+    </script> -->
+    <script>
+      const artist = {
+        name: "Van Gogh",
+        portfolio: [
+          {
+            title: "Retrato",
+            url: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/436532/1671316/main-image",
+          },
+          {
+            title: "Cielo Nocturno",
+            url: "https://mymodernmet.com/wp/wp-content/uploads/2020/11/White-house-night-van-goh-worldwide-2.jpg",
+          },
+        ],
+      };
+
+      // here artitst name
+      document.getElementById("artist-name").innerText = artist.name;
+
+      function addPortfolioCard(title, imageUrl) {
+        const template = document
+          .getElementById("portfolio-card-template")
+          .content.cloneNode(true);
+
+        // I am modifying content
+        template.querySelector(".custom-card-title").innerText = title;
+        template.querySelector(".custom-card-image").src = imageUrl;
+
+        document.getElementById("card-list").appendChild(template);
+      }
+      //=====this is part of the requieremets for exercise #4 apaying bootstrap to make it responsive. =====================================================
+      // iterate, and generate more cards:
+      artist.portfolio.forEach((item) => {
+        addPortfolioCard(item.title, item.url);
+        addPortfolioCard(item.title, item.url);
+        addPortfolioCard(item.title, item.url);
+        addPortfolioCard(item.title, item.url);
+        addPortfolioCard(item.title, item.url);
+        addPortfolioCard(item.title, item.url);
+      });
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

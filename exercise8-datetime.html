@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Moment DateTime Format</title>
+    <!-- reference Moment.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.36/moment-timezone.min.js"></script>
+  </head>
+  <body>
+    <h2>Moment Date</h2>
+    <!-- container for Moment.js output -->
+    <div id="displayMoment"></div>
+    <h2>JavaScript Date</h2>
+    <!-- container for JavaScript Date output -->
+    <div id="displayJsDate"></div>
+    <!-- exercise # 1 -->
+    <div id="daysSinceBirth"></div>
+
+    <!-- Exercise  -->
+    <h2>Age</h2>
+    <!-- container for displaying my age -->
+    <div id="age"></div>
+
+    <!-- Exercise  -->
+    <h2>Current Time in London</h2>
+    <!-- container for displaying the current time in London -->
+    <div id="currentTimeLondon"></div>
+
+    <script type="text/javascript">
+      (function () {
+        let birthdate = moment("1993-10-01", "YYYY-MM-DD");
+
+        // instantiate a moment object. this is current date
+        let NowMoment = moment();
+
+        let eDisplayMoment = document.getElementById("displayMoment");
+        eDisplayMoment.innerHTML = NowMoment.format("MMMM Do, YYYY");
+
+        //  object in #displayJsDate div
+        let eDisplayDate = document.getElementById("displayJsDate");
+        eDisplayDate.innerHTML = NowMoment.toDate().toDateString();
+        // i am adding calculation diff calculate the difference between 2 moments :
+        let daysSince = NowMoment.diff(birthdate, "days");
+        let eDaysSinceBirth = document.getElementById("daysSinceBirth");
+        eDaysSinceBirth.innerHTML = `Days since birth: ${daysSince} days`;
+        // Display the number of years, months, and days between your birthdate and current date
+        let years = NowMoment.diff(birthdate, "years");
+        let birthdatePlusYears = moment(birthdate).add(years, "years");
+        let months = NowMoment.diff(birthdatePlusYears, "months");
+        let days = NowMoment.diff(
+          birthdatePlusYears.add(months, "months"),
+          "days"
+        );
+        let eAge = document.getElementById("age");
+        eAge.innerHTML = `${years} years, ${months} months, and ${days} days`;
+
+        // Display the current time in London
+        let currentTimeInLondon = moment()
+          .tz("Europe/London")
+          .format("HH:mm:ss");
+        let eCurrentTimeLondon = document.getElementById("currentTimeLondon");
+        eCurrentTimeLondon.innerHTML = `Current time in London: ${currentTime}`;
+      })();
+    </script>
+  </body>
+</html>
